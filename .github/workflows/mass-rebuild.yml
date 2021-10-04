@@ -1,6 +1,6 @@
 name: mass-rebuild
 on: 
-#   push:
+  push:
   workflow_dispatch:
   
 jobs:
