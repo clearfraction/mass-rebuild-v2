@@ -1,0 +1,92 @@
+name: mass-rebuild
+on: 
+#   push:
+  workflow_dispatch:
+  
+jobs:
+  lap_1:
+    runs-on: ubuntu-latest
+    container: 
+      image: clearlinux:latest
+      options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
+    strategy:
+      matrix:
+        pkg: [construct-python3, lame, fdk-aac, x264, x265, granite, shotwell, foliate, wine-tkg-git]
+    steps:
+      - name: Building a package
+        shell: bash
+        run: |
+          swupd bundle-add curl --quiet
+          curl -LO https://raw.githubusercontent.com/clearfraction/mass-rebuild/main/rebuild-package.sh && chmod +x ./rebuild-package.sh
+          ./rebuild-package.sh ${{ matrix.pkg }}
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          path: /tmp/repository/*.rpm
+
+  lap_2:
+    runs-on: ubuntu-latest
+    container: 
+      image: clearlinux:latest
+      options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
+    steps:
+      - name: Building a package
+        shell: bash
+        run: |
+          swupd bundle-add curl --quiet
+          curl -LO https://raw.githubusercontent.com/clearfraction/mass-rebuild/main/vscodium-build.sh && chmod +x ./vscodium-build.sh
+          ./vscodium-build.sh
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          path: /tmp/repository/*.rpm
+
+  lap_3:
+    needs: lap_1
+    runs-on: ubuntu-latest
+    container: 
+      image: clearlinux:latest
+      options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
+    strategy:
+      matrix:
+        pkg: [pykeepass-python3, ffmpeg, gst-editing-services, planner]
+    steps:
+      - name: Download result
+        uses: actions/download-artifact@v2
+        with:
+          path: /tmp/repository
+      - name: Building a package
+        shell: bash
+        run: |
+          swupd bundle-add curl --quiet
+          curl -LO https://raw.githubusercontent.com/clearfraction/mass-rebuild/main/rebuild-package.sh && chmod +x ./rebuild-package.sh
+          ./rebuild-package.sh ${{ matrix.pkg }}
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          path: /tmp/repository/*.rpm
+
+  lap_4:
+    needs: lap_3
+    runs-on: ubuntu-latest
+    container: 
+      image: clearlinux:latest
+      options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
+    strategy:
+      matrix:
+        pkg: [passwordsafe, gstreamer-libav, fractal, mpv, gstreamer-libav]
+    steps:
+      - name: Download result
+        uses: actions/download-artifact@v2
+        with:
+          path: /tmp/repository
+      - name: Building a package
+        shell: bash
+        run: |
+          swupd bundle-add curl --quiet
+          curl -LO https://raw.githubusercontent.com/clearfraction/mass-rebuild/main/rebuild-package.sh && chmod +x ./rebuild-package.sh
+          ./rebuild-package.sh ${{ matrix.pkg }}
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          path: /tmp/repository/*.rpm
