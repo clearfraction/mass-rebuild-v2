@@ -11,7 +11,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [construct-python3, lame, fdk-aac, x264, x265, granite, shotwell, foliate, wine-tkg-git]
+        pkg: [construct-python3, lame, fdk-aac, x264, x265, shotwell, foliate]
     steps:
       - name: Building a package
         shell: bash
