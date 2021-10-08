@@ -69,7 +69,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [pykeepass-python3, ffmpeg, gst-editing-services, planner]
+        pkg: [pykeepass-python3, ffmpeg, gst-editing-services]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
