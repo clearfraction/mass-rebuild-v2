@@ -16,8 +16,7 @@ dnf install createrepo_c curl gcc git python3-dev pip-python3 gnome-keyring libg
        
 
 # fetch the source code
-# export LATEST=`curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
-export LATEST=1.60.2
+export LATEST=`curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
 git clone https://github.com/VSCodium/vscodium.git && cd vscodium
 curl -L https://github.com/microsoft/vscode/archive/refs/tags/$LATEST.tar.gz -o /tmp/$LATEST.tar.gz
 tar xfz /tmp/$LATEST.tar.gz -C /tmp/ && mv /tmp/vscode-$LATEST vscode && rm -rf /tmp/$LATEST.tar.gz
