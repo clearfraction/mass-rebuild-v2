@@ -96,7 +96,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [passwordsafe, gstreamer-libav, fluffychat, mpv, gstreamer-libav, shortwave]
+        pkg: [passwordsafe, fluffychat, mpv, gstreamer-libav, shortwave]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
