@@ -12,7 +12,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [construct-python3, lame, fdk-aac, x264, x265, shotwell, foliate]
+        pkg: [secrets, lame, fdk-aac, x264, x265, shotwell, foliate]
     steps:
       - name: Building a package
         shell: bash
@@ -71,7 +71,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [pykeepass-python3, ffmpeg]
+        pkg: [ffmpeg]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
@@ -96,7 +96,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [passwordsafe, fluffychat, mpv, gstreamer-libav, shortwave]
+        pkg: [fluffychat, mpv, gstreamer-libav]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
