@@ -71,7 +71,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [ffmpeg, alacritty, bspwm, rofi-wayland]
+        pkg: [ffmpeg, alacritty, kanshi, wlsunset, rofi-wayland]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
