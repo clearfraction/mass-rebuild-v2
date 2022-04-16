@@ -43,26 +43,6 @@ jobs:
         with:
           path: /tmp/repository/*.rpm
 
-  wine:
-    runs-on: ubuntu-latest
-    container: 
-      image: clearlinux:latest
-      options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
-    strategy:
-      matrix:
-        pkg: [wine-tkg-git]
-    steps:
-      - name: Building a package
-        shell: bash
-        run: |
-          swupd bundle-add curl --quiet
-          curl -LO https://raw.githubusercontent.com/clearfraction/mass-rebuild/main/rebuild-package.sh && chmod +x ./rebuild-package.sh
-          ./rebuild-package.sh ${{ matrix.pkg }}
-      - name: Upload result
-        uses: actions/upload-artifact@v2
-        with:
-          path: /tmp/repository/*.rpm
-
   lap_2:
     needs: lap_1
     runs-on: ubuntu-latest
@@ -71,7 +51,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [ffmpeg, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wlr-randr]
+        pkg: [ffmpeg, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
@@ -114,7 +94,7 @@ jobs:
           path: /tmp/repository/*.rpm
 
   finish:
-    needs: [lap_3, vscodium, wine]
+    needs: [lap_3, vscodium]
     runs-on: ubuntu-latest
     steps:
       - name: CD trigger
