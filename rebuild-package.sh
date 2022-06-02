@@ -10,6 +10,7 @@ swupd update --quiet
 swupd bundle-add curl dnf git --quiet 
 git clone https://github.com/clearfraction/"$1".git && mv "$1"/* .
 # manage dependencies
+mkdir /etc/dnf && echo "max_parallel_downloads=20" >> /etc/dnf/dnf.conf
 shopt -s expand_aliases && alias dnf='dnf -q -y --releasever=latest --disableplugin=changelog,needs_restarting'
 dnf config-manager --add-repo https://cdn.download.clearlinux.org/current/x86_64/os
 dnf groupinstall build srpm-build && dnf install createrepo_c
