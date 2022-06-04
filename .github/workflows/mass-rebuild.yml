@@ -51,7 +51,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [ffmpeg, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv, waybar]
+        pkg: [ffmpeg, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
