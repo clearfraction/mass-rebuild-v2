@@ -11,8 +11,8 @@ swupd bundle-add curl dnf git --quiet
 git clone https://github.com/clearfraction/"$1".git && mv "$1"/* .
 # manage dependencies
 shopt -s expand_aliases && alias dnf='dnf -q -y --releasever=latest --disableplugin=changelog,needs_restarting'
-dnf config-manager --add-repo https://cdn.download.clearlinux.org/current/x86_64/os
-echo -e "[main]\nmax_parallel_downloads=20" >> /etc/dnf/dnf.conf
+dnf config-manager --add-repo https://cdn.download.clearlinux.org/current/x86_64/os --add-repo https://cdn-alt.download.clearlinux.org/current/x86_64/os --add-repo https://download.clearlinux.org/current/x86_64/os
+echo -e "[main]\nmax_parallel_downloads=20\nretries=30\nfastestmirror=True" >> /etc/dnf/dnf.conf
 dnf groupinstall build srpm-build && dnf install createrepo_c
 [ -d "/tmp/repository" ] && createrepo_c --database /tmp/repository && dnf config-manager --add-repo /tmp/repository
 dnf builddep *.spec || { echo "Failed to handle build dependencies"; exit 1; }
