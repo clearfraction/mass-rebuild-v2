@@ -76,7 +76,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [fluffychat, mpv, gstreamer-libav, waybar]
+        pkg: [fluffychat, mpv, gstreamer-libav, waybar, wf-recorder, grim]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
