@@ -12,7 +12,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [secrets, lame, fdk-aac, x264, x265, shotwell, foliate]
+        pkg: [secrets, lame, fdk-aac, x264, x265, shotwell, foliate, nv-codec-headers]
     steps:
       - name: Building a package
         shell: bash
@@ -51,7 +51,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [ffmpeg, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv]
+        pkg: [ffmpeg, ffmpeg-cuda, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
