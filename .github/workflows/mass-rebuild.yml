@@ -51,7 +51,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [ffmpeg, ffmpeg-cuda, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv, nvidia-vaapi-driver, vdpau-va-driver-v9]
+        pkg: [ffmpeg, ffmpeg-cuda, alacritty, kitty, kanshi, wlsunset, rofi-wayland, wl-clipboard, wlr-randr, btop, swayblur, oguri, autotiling, swaylock-effects, imv, nvidia-vaapi-driver, vdpau-va-driver-vp9]
     steps:
       - name: Download result
         uses: actions/download-artifact@v2
