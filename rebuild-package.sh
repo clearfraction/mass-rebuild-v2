@@ -19,6 +19,7 @@ dnf builddep *.spec || { echo "Failed to handle build dependencies"; exit 1; }
 
 
 # build the package
+echo 'exit 0' > /usr/lib/rpm/clr/brp-create-abi
 rpmbuild --quiet -bb *.spec --define "_topdir $PWD" \
          --define "_sourcedir $PWD" --undefine=_disable_source_fetch \
          --define "abi_package %{nil}" ||  { echo "Build failed"; exit 1; }
