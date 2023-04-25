@@ -12,7 +12,7 @@ jobs:
       options: --privileged --cap-add=SYS_ADMIN --security-opt apparmor:unconfined
     strategy:
       matrix:
-        pkg: [secrets, lame, fdk-aac, x264, x265, shotwell, foliate, nv-codec-headers, alacritty, kitty]
+        pkg: [secrets, lame, fdk-aac, x264, x265, shotwell, foliate, alacritty, kitty]
     steps:
       - name: Building a package
         shell: bash
