@@ -19,11 +19,11 @@ dnf builddep *.spec || { echo "Failed to handle build dependencies"; exit 1; }
 
 
 # enable x86_64-v3
-sed -i '/^export CFLAGS=.*/ s/\ "/-march=x86-64-v3 -m64 -Wl,-z,x86-64-v3\ "/' *.spec
-sed -i '/^export CXXFLAGS=.*/ s/\ "/-march=x86-64-v3 -m64 -Wl,-z,x86-64-v3\ "/' *.spec
-sed -i '/^export FFLAGS=.*/ s/\ "/-march=x86-64-v3 -m64-Wl,-z,x86-64-v3\ "/' *.spec
-sed -i '/^export FCFLAGS=.*/ s/\ "/-march=x86-64-v3 -m64\ "/' *.spec
-sed -i '/^export LDFLAGS=.*/ s/\ "/-march=x86-64-v3 -m64\ "/' *.spec
+sed -i '/^export CFLAGS=.*/ s/\ "/ -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3\ "/' *.spec
+sed -i '/^export CXXFLAGS=.*/ s/\ "/ -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3\ "/' *.spec
+sed -i '/^export FFLAGS=.*/ s/\ "/ -march=x86-64-v3 -m64-Wl,-z,x86-64-v3\ "/' *.spec
+sed -i '/^export FCFLAGS=.*/ s/\ "/ -march=x86-64-v3 -m64\ "/' *.spec
+sed -i '/^export LDFLAGS=.*/ s/\ "/ -march=x86-64-v3 -m64\ "/' *.spec
 sed -i '/^export RUSTFLAGS=.*/ s/-C target-cpu=westmere/-C target-cpu=haswell/' *.spec
 sed -i '/^export RUSTFLAGS=.*/ s/-C target-feature=+avx/-C target-feature=+avx2/' *.spec
 
