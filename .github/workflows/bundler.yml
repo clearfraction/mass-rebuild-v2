@@ -24,6 +24,7 @@ jobs:
           swupd bundle-add curl --quiet
           cd /home && curl -s -LO https://github.com/clearfraction/bundles/raw/master/build.sh && chmod +x build.sh
           sed -i "s|/V3/usr|/V3/notfound|g" build.sh
+          sed -i "s|clearfraction/bundles/releases|clearfraction/mass-rebuild-v2/releases|g" build.sh
           ./build.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
