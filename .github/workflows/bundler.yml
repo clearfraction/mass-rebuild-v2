@@ -25,7 +25,7 @@ jobs:
           cd /home && curl -s -LO https://github.com/clearfraction/bundles/raw/master/build.sh && chmod +x build.sh
           ./build.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_USER: paulcarroty
       
   docker:
