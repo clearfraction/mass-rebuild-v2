@@ -16,7 +16,7 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          repo: clearfraction/mass-rebuild
+          repo: clearfraction/mass-rebuild-v2
           workflow: mass-rebuild.yml
           check_artifacts: true
           path: /home
@@ -30,4 +30,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: paulcarroty
           APP: "clearfraction"
-          VERCEL_REBUILD_HOOK: ${{ secrets.VERCEL_REBUILD_HOOK }}
+          VERCEL_REBUILD_HOOK: ${{ secrets.VERCEL_REBUILD_HOOK2 }}
