@@ -1,0 +1,33 @@
+name: format_bump
+on:
+  schedule:
+    - cron: "0 22 * * 3"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [build]
+    
+jobs:
+  mixer:
+    runs-on: ubuntu-latest
+    container: 
+      image: clearlinux:latest
+      options: --privileged --cap-add=SYS_ADMIN
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          repo: clearfraction/mass-rebuild
+          workflow: mass-rebuild.yml
+          check_artifacts: true
+          path: /home
+      - name: Build new release
+        shell: bash
+        run: |
+          swupd bundle-add curl --quiet
+          cd /home && curl -s -LO https://raw.githubusercontent.com/clearfraction/bundles/master/format_bump.sh && chmod +x format_bump.sh
+          ./format_bump.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: paulcarroty
+          APP: "clearfraction"
+          VERCEL_REBUILD_HOOK: ${{ secrets.VERCEL_REBUILD_HOOK }}
