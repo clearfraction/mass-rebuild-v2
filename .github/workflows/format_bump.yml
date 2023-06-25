@@ -25,7 +25,9 @@ jobs:
         run: |
           swupd bundle-add curl --quiet
           cd /home && curl -s -LO https://raw.githubusercontent.com/clearfraction/bundles/master/format_bump.sh && chmod +x format_bump.sh
-          sed -i "s|/V3/usr|/V3/notfound|g" format_bump.sh
+          sed -i "s|/V3/usr|/V3/notfound|g" build.sh
+          sed -i "s|clearfraction/bundles/releases|clearfraction/mass-rebuild-v2/releases|g" build.sh
+          sed -i "s|cd /home|cd /home; git remote remove origin; git remote add origin https://github.com/clearfraction/mass-rebuild-v2.git|g" build.sh
           ./format_bump.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
