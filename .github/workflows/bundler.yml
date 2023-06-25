@@ -2,7 +2,7 @@ name: bundler
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [build]
+    types: [start_bundler]
     
 jobs:
   mixer:
