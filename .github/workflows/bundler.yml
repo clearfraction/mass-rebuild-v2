@@ -41,4 +41,4 @@ jobs:
           APP: "clearfraction"
           VERCEL_REBUILD_HOOK: ${{ secrets.VERCEL_REBUILD_HOOK2 }}
         run: |
-          curl -X POST ${VERCEL_REBUILD_HOOK2}
+          curl -X POST ${VERCEL_REBUILD_HOOK}
